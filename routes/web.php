@@ -14,30 +14,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('');
+    return view('pages.home');
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('pages.login');
 });
 
 Route::get('register', function () {
-    return view('register');
+    return view('pages.register');
 });
 
 Route::get('register', function () {
-    return view('register');
+    return view('pages.register');
 });
 
 Route::get('register', function () {
-    return view('register');
+    return view('pages.register');
 });
 
 Route::get('register', function () {
-    return view('register');
+    return view('pages.register');
 });
 
 Route::get('register', function () {
-    return view('register');
+    return view('pages.register');
 });
-

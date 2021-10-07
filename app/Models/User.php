@@ -13,4 +13,14 @@ class User extends Model
     {
         $this->hasMany(Transaction::class);
     }
+
+    function gender()
+    {
+        $this->belongsTo(Gender::class);
+    }
+
+    function roles()
+    {
+        $this->belongsTo(Role::class);
+    }
 }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gender extends Model
 {
     use HasFactory;
+
+    function user()
+    {
+        $this->hasMany(User::class);
+    }
 }

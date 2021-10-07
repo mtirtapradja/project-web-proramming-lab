@@ -13,4 +13,8 @@ class Transaction extends Model
     {
         $this->belongsTo(User::class);
     }
+
+    function transaction_detail(){
+        $this->hasMany(Transaction_detail::class);
+    }
 }

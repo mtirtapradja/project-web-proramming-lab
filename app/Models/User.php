@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     use HasFactory;
+
+    function transactions()
+    {
+        $this->hasMany(Transaction::class);
+    }
 }

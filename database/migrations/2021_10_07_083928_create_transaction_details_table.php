@@ -15,12 +15,10 @@ class CreateTransactionDetailsTable extends Migration
     {
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
             $table->bigInteger('price');
 
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();

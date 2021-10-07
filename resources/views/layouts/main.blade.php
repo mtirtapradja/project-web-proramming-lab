@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    main
     @yield('container')
 </body>
 

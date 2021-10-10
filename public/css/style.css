@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.color-primary {
+    background-color: #ffc107;
+}
+.color-secondary {
+    background-color: #285185;
+}
+
+.color-ternary {
+    background-color: #ccd9e2;
+}

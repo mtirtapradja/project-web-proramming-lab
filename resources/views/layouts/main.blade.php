@@ -22,9 +22,9 @@
 
 <body>
     @include('partials.navbar')
-    <div class="color-ternary">
+    <main>
         @yield('container')
-    </div>
+    </main>
     @include('partials.footer')
 </body>
 

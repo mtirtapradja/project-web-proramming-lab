@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+main {
+    background-color: #ccd9e2;
+}
+
 .color-primary {
     background-color: #ffc107;
 }

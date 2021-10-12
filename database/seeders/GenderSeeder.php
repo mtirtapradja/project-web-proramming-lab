@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Gender;
 use Illuminate\Database\Seeder;
 
 class GenderSeeder extends Seeder
@@ -13,6 +14,12 @@ class GenderSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $genders = ['Male', 'Female'];
+        $size = count($genders);
+        for ($i = 0; $i < $size; $i++){
+            Gender::create([
+               'name' => $genders[$i] 
+            ]);
+        }
     }
 }

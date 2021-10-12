@@ -12,7 +12,7 @@
     </div>
     <div class="row align-items-center justify-content-center color-secondary text-decoration-none">
         <div class="fs-5 mb-2 text-center text-light">
-            @ 2021 Copyright DY20-1
+            &copy; 2021 Marcellino & Steven S.
         </div>
     </div>
 </footer>

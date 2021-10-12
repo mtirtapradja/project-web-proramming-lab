@@ -4,7 +4,8 @@
             <h1>DY.ID</h1>
         </div>
         <div class="col-sm-6 col-md-11">
-            <form action="/posts" method="GET">
+            {{-- Add GET method action to... --}}
+            <form action="#" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search.." name="search">
                     <button class="btn btn-danger" type="submit"><i class="bi bi-search"></i></button>
@@ -29,10 +30,10 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <button class="btn btn-danger">
+                        <a href="/login" class="btn btn-danger">
                             <i class="bi bi-box-arrow-in-right"></i>
                             Login
-                        </button>
+                        </a>
                     </li>
                 </ul>
             </div>

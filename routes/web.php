@@ -22,8 +22,18 @@ Route::get('/login',  [GeneralController::class, 'login']);
 
 Route::get('/register', [GeneralController::class, 'register']);
 
-Route::get('/detail_product', [ProductController::class, 'detail']);
 
-Route::get('/edit_product', [ProductController::class, 'edit']);
+Route::get('/products', [ProductController::class, 'index']);
 
-Route::get('/add_category', [CategoryController::class, 'add']);
+Route::get('/detail-product', [ProductController::class, 'detail']);
+
+Route::get('/add-product', [ProductController::class, 'add']);
+
+Route::get('/edit-product', [ProductController::class, 'edit']);
+
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/add-category', [CategoryController::class, 'add']);
+
+Route::get('/edit-category', [CategoryController::class, 'edit']);

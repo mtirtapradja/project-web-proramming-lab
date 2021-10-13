@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GeneralController::class, 'home']);
+Route::get('/', [ProductController::class, 'home']);
 
 Route::get('/login',  [GeneralController::class, 'login']);
 
@@ -37,3 +37,16 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/add-category', [CategoryController::class, 'add']);
 
 Route::get('/edit-category', [CategoryController::class, 'edit']);
+
+
+Route::get('/my-cart', function () {
+    return view('pages.my-cart', [
+        'title' => 'My Cart'
+    ]);
+});
+
+Route::get('/history', function () {
+    return view('pages.my-history-transaction', [
+        'title' => 'My History Transaction'
+    ]);
+});

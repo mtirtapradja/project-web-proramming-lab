@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -31,6 +32,14 @@ class ProductController extends Controller
     {
         return view('pages.edit-product', [
             'title' => 'Edit Product',
+        ]);
+    }
+
+    public function home()
+    {
+        return view('pages.home', [
+            'title' => 'Home',
+            'products' => Product::all()
         ]);
     }
 }

@@ -13,11 +13,11 @@ class ProductController extends Controller
 
     public function detail()
     {
-        return view('pages.detail_product');
+        return view('pages.detail-product');
     }
 
     public function edit()
     {
-        return view('pages.edit_product');
+        return view('pages.edit-product');
     }
 }

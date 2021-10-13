@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,38 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [GeneralController::class, 'home']);
 
-Route::get('/login', function () {
-    return view('pages.login');
-});
+Route::get('/login',  [GeneralController::class, 'login']);
 
-Route::get('/register', function () {
-    return view('pages.register');
-});
+Route::get('/register', [GeneralController::class, 'register']);
 
-Route::get('/add_category', function () {
-    return view('pages.add_category');
-});
+Route::get('/detail_product', [ProductController::class, 'detail']);
 
-Route::get('/detail_product', function () {
-    return view('pages.detail_product');
-});
+Route::get('/edit_product', [ProductController::class, 'edit']);
 
-Route::get('/edit_cart', function () {
-    return view('pages.edit_cart');
-});
-
-Route::get('/edit_product', function () {
-    return view('pages.edit_product');
-});
-
-Route::get('/search', function () {
-    return view('pages.search');
-});
-
-Route::get('/edit_product', function () {
-    return view('pages.edit_product');
-});
+Route::get('/add_category', [CategoryController::class, 'add']);

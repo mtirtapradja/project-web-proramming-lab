@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ Route::get('/', [ProductController::class, 'home']);
 Route::get('/login',  [GeneralController::class, 'login']);
 
 Route::get('/register', [GeneralController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 
 Route::get('/products', [ProductController::class, 'index']);

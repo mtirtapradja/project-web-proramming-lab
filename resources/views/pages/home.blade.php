@@ -8,12 +8,12 @@
                     <img src="#" class="card-img-top" alt="Image">
                     <div class=" card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
-                        <p>
+                        <p class="d-flex justify-content-between">
                             <small class="text-muted">
                                 IDR {{ $product->price }}
                             </small>
+                            <small>{{ $product->category->name }}</small>
                         </p>
-                        {{-- <p class="card-text">{{ $post->excerpt }}</p> --}}
                         <a href="#" class="btn btn-warning">More detail</a>
                     </div>
                 </div>

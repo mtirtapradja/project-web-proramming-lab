@@ -13,17 +13,17 @@ class User extends Model
 
     function transactions()
     {
-        $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class);
     }
 
     function gender()
     {
-        $this->belongsTo(Gender::class);
+        return $this->belongsTo(Gender::class);
     }
 
     function roles()
     {
-        $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     protected $guarded = ['id'];

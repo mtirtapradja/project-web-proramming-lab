@@ -22,7 +22,7 @@ Route::get('/', [ProductController::class, 'home']);
 Route::get('/login',  [GeneralController::class, 'login']);
 
 Route::get('/register', [GeneralController::class, 'register']);
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/', [RegisterController::class, 'store']);
 
 
 Route::get('/products', [ProductController::class, 'index']);

@@ -6,10 +6,10 @@
             <form class="bg-light p-4">
                 <p class="fs-3 mb-3 text-primary">Welcome Back</p>
                 <div class="mb-3">
-                    <input type="email" class="form-control-lg" placeholder="Enter email">
+                    <input type="email" class="form-control" placeholder="Enter email">
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control-lg" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="">

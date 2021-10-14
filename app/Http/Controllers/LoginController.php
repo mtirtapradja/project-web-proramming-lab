@@ -18,7 +18,6 @@ class LoginController extends Controller
             'password' => 'required|min:5|max:255'
         ]);
 
-        //TODO (itended)isi dengan nama route #recent
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('');

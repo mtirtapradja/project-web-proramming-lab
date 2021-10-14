@@ -9,11 +9,13 @@ class Transaction_detail extends Model
 {
     use HasFactory;
 
-    function product(){
-        $this->belongsTo(Product::class);
+    function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 
-    function Transaction(){
-        $this->belongsTo(Transaction::class);
+    function Transaction()
+    {
+        return $this->belongsTo(Transaction::class);
     }
 }

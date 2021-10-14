@@ -11,10 +11,11 @@ class Transaction extends Model
 
     function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    function transaction_detail(){
-        $this->hasMany(Transaction_detail::class);
+    function transaction_detail()
+    {
+        return $this->hasMany(Transaction_detail::class);
     }
 }

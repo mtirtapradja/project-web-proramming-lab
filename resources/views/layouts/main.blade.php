@@ -22,14 +22,13 @@
 
 <body>
     @include('partials.navbar')
-    <div class="container">
-        <section class="section-container">
-            <div class="row justify-content-center">
-                @yield('container')
-            </div>
-        </section>
-    </div>
+
+    <section class="m-5">
+        @yield('container')
+    </section>
+
     @include('partials.footer')
+
 </body>
 
 </html>

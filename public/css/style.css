@@ -1,25 +1,5 @@
 body {
     background-color: #ccd9e2;
-    width: 100%;
-}
-
-/* header {
-    position: relative;
-    height: min-content;
-    margin-bottom: -200;
-} */
-
-/* footer {
-    position: relative;
-    height: min-content;
-    margin-top: -200;
-} */
-
-.section-container {
-    display: flex;
-    justify-content: center;
-    min-height: 75vh;
-    width: 100%;
 }
 
 .color-primary {

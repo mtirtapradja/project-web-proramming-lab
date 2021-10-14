@@ -23,4 +23,6 @@ class User extends Model
     {
         $this->belongsTo(Role::class);
     }
+
+    protected $guarded = ['id'];
 }

@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 
 class GeneralController extends Controller
 {
-    public function home()
-    {
-        return view('pages.home', [
-            'title' => 'Home'
-        ]);
-    }
+    // public function home()
+    // {
+    //     return view('pages.home', [
+    //         'title' => 'Home'
+    //     ]);
+    // }
 
     public function login()
     {

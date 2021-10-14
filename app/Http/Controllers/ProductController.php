@@ -14,17 +14,19 @@ class ProductController extends Controller
         ]);
     }
 
-    public function add()
-    {
-        return view('pages.add-product', [
-            'title' => 'Add Product',
-        ]);
-    }
-
     public function detail()
     {
         return view('pages.detail-product', [
             'title' => 'Product Detail',
+        ]);
+    }
+
+    // TODO edit dan add product bisa dijadiin 1 template, tinggal bedain judul nya diatas
+
+    public function add()
+    {
+        return view('pages.add-product', [
+            'title' => 'Add Product',
         ]);
     }
 

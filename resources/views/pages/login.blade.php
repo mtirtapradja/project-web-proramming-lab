@@ -3,7 +3,8 @@
 @section('container')
     <div class="container">
         <div class="d-flex justify-content-center">
-            <form class="bg-light p-4">
+            <form class="bg-light p-4" action="/" method="post">
+                @csrf
                 <p class="fs-3 mb-3 text-primary">Welcome Back</p>
                 <div class="mb-3">
                     <input type="email" name="email" class="form-control" placeholder="Enter email">

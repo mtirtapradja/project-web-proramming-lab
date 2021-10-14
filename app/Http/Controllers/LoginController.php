@@ -13,17 +13,29 @@ class LoginController extends Controller
     
     public function authenticate(Request $request){
         //TODO konekin ke blade
-        $credentials = $request->validate([
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255'
-        ]);
+        // $request->validate([
+        //     'email' => 'required|email:dns',
+        //     'password' => 'required'
+        // ]);
 
-        if(Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('');
-        }
+        // dd($request->all());
 
-        //TODO Middleware?
-        return back();
+        // $credentials = $request->validate([
+            // 'email' => ['required','email:dns'],
+            // 'password' => ['required']
+        // ]);
+
+        //TODO masih ga jelas auth
+
+        dd(Auth::attempt($request->all()));
+
+        // if(Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/');
+        // }
+
+        // return back();
+        // $request->session(   )->regenerate();
+        // return redirect()->intended('/');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="container">
-        <form class="bg-light p-4" action="/login" method="post">
+        <form class="bg-light p-4" action="/register" method="post">
             @csrf
             <p class="fs-3 mb-3 text-primary">Join With Us</p>
             <div class="mb-3">

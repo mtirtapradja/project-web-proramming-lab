@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +20,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'home']);
 
-Route::get('/login',  [GeneralController::class, 'login']);
+//login
+Route::get('/login',  [GeneralController::class, 'login'])->middleware('guest');
+Route::post('/',  [LoginController::class, 'authenticate']);
 
+//register
 Route::get('/register', [GeneralController::class, 'register']);
-Route::post('/', [RegisterController::class, 'store']);
-
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/products', [ProductController::class, 'index']);
 

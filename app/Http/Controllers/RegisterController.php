@@ -17,7 +17,7 @@ class RegisterController extends Controller
     public function store(Request $request){
         // $validatedData = $request->validate([
         //     'name' => 'required|max:255',
-        //     'email' => 'required|unique:users',
+        //     'email' => 'required|email:dns:unique:users',
         //     'role_id' => 'required|min:1|max:2',
         //     'gender_id' => 'required|min:1|max:2',
         //     'address' => 'required|max:255',
@@ -26,7 +26,8 @@ class RegisterController extends Controller
 
         // dd($request->all());
 
-        User::create($request->all());
-
+        // User::create($request->all());
+        
+        return redirect()->intended('/login');
     }
 }

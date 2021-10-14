@@ -2,7 +2,8 @@
 
 @section('container')
     <div class="container">
-        <form class="bg-light p-4">
+        <form class="bg-light p-4" action="/" method="post">
+            @csrf
             <p class="fs-3 mb-3 text-primary">Join With Us</p>
             <div class="mb-3">
                 <input type="text" name="name" class="form-control" placeholder="Full Name">
@@ -15,11 +16,11 @@
                     Gender
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="gender" type="radio" value="1">
+                    <input class="form-check-input" name="gender_id" type="radio" value="1">
                     <label class="form-check-label" for="inlineCheckbox1">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" name="gender" type="radio" value="2">
+                    <input class="form-check-input" name="gender_id" type="radio" value="2">
                     <label class="form-check-label" for="inlineCheckbox2">Female</label>
                 </div>
             </div>

@@ -16,19 +16,20 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Marcellino',
-            'email' => 'marcellino@binus.ac.id',
+            'email' => 'marcellino005@binus.ac.id',
             'role_id' => 1,
             'gender_id' => 1,
             'address' => 'Alam Sutra',
-            'password' => 123456
+            'password' => bcrypt('123456')
         ]);
+
         User::create([
             'name' => 'Steven Santoso Suntiarko',
             'email' => 'steven.suntiarko@binus.ac.id',
             'role_id' => 2,
             'gender_id' => 1,
             'address' => 'Jakarta',
-            'password' => 123456
+            'password' => bcrypt('123456')
         ]);
     }
 }

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class, 'home']);
+Route::get('/', [ProductController::class, 'index']);
 
 //search
 Route::get('/search', [ProductController::class, 'find']);
@@ -31,14 +31,7 @@ Route::post('/',  [LoginController::class, 'authenticate']);
 Route::get('/register', [GeneralController::class, 'register']);
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/products', [ProductController::class, 'index']);
-
-Route::get('/detail-product', [ProductController::class, 'detail']);
-
-Route::get('/add-product', [ProductController::class, 'add']);
-
-Route::get('/edit-product', [ProductController::class, 'edit']);
-
+Route::resource('/products', [ProductController::class]);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 

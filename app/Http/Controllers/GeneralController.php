@@ -26,4 +26,6 @@ class GeneralController extends Controller
             'title' => 'Register'
         ]);
     }
+
+    
 }

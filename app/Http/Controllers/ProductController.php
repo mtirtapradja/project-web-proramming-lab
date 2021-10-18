@@ -44,4 +44,19 @@ class ProductController extends Controller
             'products' => Product::all()
         ]);
     }
+
+    public function find(Request $request){
+        $findedProducts = Product::all();
+
+        if (request('search')){
+            $findedProducts->where('title', 'like', '%' . request('search') . '%');
+            // $findedProducts = Product::search($request->search)->get();
+            // $findedProducts->search(request('search'))->get();
+            // dd($findedProducts);        
+        }
+
+        return view('pages.search', [
+            "products" => $findedProducts
+        ]);
+    }
 }

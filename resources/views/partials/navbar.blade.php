@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-6 col-md-11">
                     {{-- Add GET method action to... --}}
-                    <form action="#" method="GET">
+                    <form action="/search">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search.." name="search">
                             <button class="btn btn-danger" type="submit"><i class="bi bi-search"></i></button>

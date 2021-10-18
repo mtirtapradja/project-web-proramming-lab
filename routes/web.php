@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'home']);
 
+//search
+Route::get('/search', [ProductController::class, 'find']);
+
 //login
 Route::get('/login',  [GeneralController::class, 'login'])->middleware('guest');
 Route::post('/',  [LoginController::class, 'authenticate']);

@@ -2,6 +2,7 @@
 
 @section('container')
     <div class="row justify-content-center">
+        <p class="fs-1 text-center mb-5">New Products</p>
         @foreach ($products as $product)
             <div class="col-md-4 mb-3">
                 <div class="card">

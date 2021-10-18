@@ -20,25 +20,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index']);
 
-//search
-Route::get('/search', [ProductController::class, 'find']);
-
-//login
-Route::get('/login',  [GeneralController::class, 'login'])->middleware('guest');
-Route::post('/',  [LoginController::class, 'authenticate']);
-
-//register
-Route::get('/register', [GeneralController::class, 'register']);
-Route::post('/register', [RegisterController::class, 'store']);
-
+// Product
+Route::get('/products/manage', [ProductController::class, 'manage'])->middleware('auth');
 Route::resource('/products', ProductController::class);
 
+// Login
+Route::get('/login',  [LoginController::class, 'index'])->middleware('guest');
+Route::post('/login',  [LoginController::class, 'authenticate'])->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
-Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/add-category', [CategoryController::class, 'add']);
+// Register
+Route::get('/register', [GeneralController::class, 'register'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('/edit-category', [CategoryController::class, 'edit']);
+
+// category
+Route::get('/categories/manage', [CategoryController::class, 'manage'])->middleware('auth');
+Route::resource('/categories', CategoryController::class);
 
 
 Route::get('/my-cart', function () {

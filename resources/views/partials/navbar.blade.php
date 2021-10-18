@@ -43,7 +43,7 @@
                                     Manage Product
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="/add-product">Add Product</a></li>
+                                    <li><a class="dropdown-item" href="/products/create">Add Product</a></li>
                                     <li><a class="dropdown-item" href="/products">View Product</a></li>
                                 </ul>
                             </li>

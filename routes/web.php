@@ -31,7 +31,8 @@ Route::post('/',  [LoginController::class, 'authenticate']);
 Route::get('/register', [GeneralController::class, 'register']);
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::resource('/products', [ProductController::class]);
+Route::resource('/products', ProductController::class);
+
 
 Route::get('/categories', [CategoryController::class, 'index']);
 

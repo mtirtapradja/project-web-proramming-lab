@@ -10,24 +10,25 @@ use Illuminate\Contracts\Support\ValidatedData;
 class RegisterController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         return view('pages.Register');
     }
 
-    public function store(Request $request){
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'email' => 'required|email:dns:unique:users',
-        //     'role_id' => 'required|min:1|max:2',
-        //     'gender_id' => 'required|min:1|max:2',
-        //     'address' => 'required|max:255',
-        //     'password' => 'required|min:5|max:255'
-        // ]);
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email:dns'],
+            'gender_id' => ['required'],
+            'address' => ['required', 'max:255'],
+            'password' => ['required', 'min:5', 'max:255']
+        ]);
 
-        // dd($request->all());
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
-        // User::create($request->all());
-        
+        User::create($validatedData);
+
         return redirect()->intended('/login');
     }
 }

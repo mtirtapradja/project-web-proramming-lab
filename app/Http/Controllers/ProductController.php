@@ -108,7 +108,7 @@ class ProductController extends Controller
             'description' => ['required'],
             'price' => ['required'],
             'category_id' => ['required'],
-            'image' => ['image', 'file'],
+            'image_url' => ['image', 'file'],
         ];
 
         // $request itu yang baru, $post itu yang lama
@@ -123,7 +123,7 @@ class ProductController extends Controller
         if ($request->file('image')) {
             if ($request->oldImage) Storage::delete($request->oldImage);
 
-            $validatedData['image'] = $request->file('image')->store('product-images');
+            $validatedData['image_url'] = $request->file('image')->store('product-images');
         }
 
         Product::where('id', $product->id)

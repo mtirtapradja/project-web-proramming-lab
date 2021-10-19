@@ -58,7 +58,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('pages.product.detail-product', [
+            'title' => 'Product Detail',
+            'product' => $product
+        ]);
     }
 
     /**
@@ -69,7 +72,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
     }
 
     /**

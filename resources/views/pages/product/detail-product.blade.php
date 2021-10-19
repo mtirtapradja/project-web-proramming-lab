@@ -49,7 +49,7 @@
                             </li>
                             <li class="list-group-item">
                                 <p class="fs-4 fw-bold">Description:</p>
-                                <p class="fs-5 fw-light">IDR {{ $product->description }}</p>
+                                <p class="fs-5 fw-light">{{ $product->description }}</p>
                             </li>
                         </ul>
                     </div>

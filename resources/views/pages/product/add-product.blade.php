@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="container">
-        <form class="bg-light p-4" action="/posts" method="post" enctype="multipart/form-data">
+        <form class="bg-light p-4" action="/products" method="post" enctype="multipart/form-data">
             @csrf
             <p class="fs-3 mb-3 text-primary">Insert New Product</p>
             <div class="mb-3">

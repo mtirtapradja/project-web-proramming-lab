@@ -20,13 +20,13 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>Isi pake images nanti</td>
                     <td>{{ $product->name }}</td>
-                    <td>Isi pake description nanti</td>
+                    <td>{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>
-                        <a href="/dashboard/posts/{{ $product->slug }}/edit"
+                        <a href="/products/{{ $product->name }}/edit"
                             class="badge bg-warning text-decoration-none text-black">Update</a>
-                        <form action="/dashboard/posts/{{ $product->slug }}" method="POST" class="d-inline">
+                        <form action="/products/{{ $product->name }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0"

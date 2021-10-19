@@ -15,7 +15,7 @@
                             </small>
                             <small>{{ $product->category->name }}</small>
                         </p>
-                        <a href="#" class="btn btn-warning">More detail</a>
+                        <a href="/products/{{ $product->name }}" class=" btn btn-warning">More detail</a>
                     </div>
                 </div>
             </div>

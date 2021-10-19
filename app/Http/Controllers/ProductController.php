@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -47,7 +48,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'unique:products'],
+            'description' => ['required'],
+            'price' => ['required'],
+            'category_id' => ['required'],
+            'image_url' => ['image', 'file'],
+        ]);
+
+        // Buat masukin image nya kalo emang si user masukin image dan udah lolos validasi
+        if ($request->file('image')) {
+            $validatedData['image_url'] = $request->file('image')->store('product-images');
+        }
+
+        Product::create($validatedData);
+
+        return redirect('/products/manage')->with('success', 'Product has been added!');
     }
 
     /**
@@ -72,6 +88,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        return view('pages.product.edit-product', [
+            'title' => 'Edit Product',
+            'product' => $product,
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -83,7 +104,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $rules = [
+            'description' => ['required'],
+            'price' => ['required'],
+            'category_id' => ['required'],
+            'image' => ['image', 'file'],
+        ];
+
+        // $request itu yang baru, $post itu yang lama
+        if ($request->name != $product->name) {
+            $rules['name'] = ['required', 'unique:products'];
+        }
+
+
+        $validatedData = $request->validate($rules);
+
+        // Buat masukin image nya kalo emang si user masukin image dan udah lolos validasi
+        if ($request->file('image')) {
+            if ($request->oldImage) Storage::delete($request->oldImage);
+
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        }
+
+        Product::where('id', $product->id)
+            ->update($validatedData);
+
+        return redirect('/products/manage')->with('success', 'Product has been updated!');
     }
 
     /**
@@ -94,7 +140,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        // Delete file nya
+        if ($product->image_url) Storage::delete($product->image_url);
+
+        // Delete dari table
+        Product::destroy($product->id);
+        return redirect('/products')->with('success', 'Post has been deleted!');
     }
 
     public function manage(Request $request)

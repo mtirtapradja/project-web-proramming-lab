@@ -18,4 +18,9 @@ class Product extends Model
     {
         return $this->hasMany(Transaction_detail::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

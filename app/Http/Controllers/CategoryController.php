@@ -37,7 +37,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi nama category
+        $validatedData = $request->validate([
+            'name' => ['required', 'unique:categories']
+        ]);
+
+        Category::create($validatedData);
+
+        return redirect('/categories/manage')->with('success', 'Category has been added!');
     }
 
     /**
@@ -59,7 +66,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('pages.category.edit-category', [
+            'title' => 'Edit Category',
+            'category' => $category
+        ]);
     }
 
     /**
@@ -71,7 +81,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $rules = [
+            'name' => ['required']
+        ];
+
+        // $request itu yang baru, $post itu yang lama
+        if ($request->name != $category->name) {
+            $rules['name'] = ['required', 'unique:products'];
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Category::where('id', $category->id)
+            ->update($validatedData);
+
+        return redirect('/categories/manage')->with('success', 'Product has been updated!');
     }
 
     /**
@@ -82,7 +106,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // Delete dari table
+        Category::destroy($category->id);
+        return redirect('/categories/manage')->with('success', 'Post has been deleted!');
+    
     }
 
     public function manage(Request $request)

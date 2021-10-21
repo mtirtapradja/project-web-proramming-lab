@@ -32,7 +32,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light active" href="/history">History Transaction</a>
+                        <a class="nav-link text-light active" href="/my-history">History Transaction</a>
                     </li>
                 </ul>
                 {{-- //TODO ini harus ada conditional rendering untuk admin --}}

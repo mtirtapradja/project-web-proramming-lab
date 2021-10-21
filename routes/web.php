@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,18 @@ Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/manage', [ProductController::class, 'manage'])->middleware('auth');
 Route::resource('/products', ProductController::class);
 
+// category
+Route::get('/categories/manage', [CategoryController::class, 'manage'])->middleware('auth');
+Route::resource('/categories', CategoryController::class);
+
+// Cart
+// Route::get('/my-cart', [CartController::class, 'manage']);
+Route::resource('/my-cart', CartController::class);
+
+// History
+// Route::get('/my-history', [HistoryController::class, 'manage']);
+Route::resource('/my-history', TransactionController::class);
+
 // Login
 Route::get('/login',  [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login',  [LoginController::class, 'authenticate'])->middleware('guest');
@@ -35,19 +49,16 @@ Route::get('/register', [GeneralController::class, 'register'])->middleware('gue
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
 
-// category
-Route::get('/categories/manage', [CategoryController::class, 'manage'])->middleware('auth');
-Route::resource('/categories', CategoryController::class);
 
 
-Route::get('/my-cart', function () {
-    return view('pages.my-cart', [
-        'title' => 'My Cart'
-    ]);
-});
+// Route::get('/my-cart', function () {
+//     return view('pages.cart.my-cart', [
+//         'title' => 'My Cart'
+//     ]);
+// });
 
-Route::get('/history', function () {
-    return view('pages.my-history-transaction', [
-        'title' => 'My History Transaction'
-    ]);
-});
+// Route::get('/history', function () {
+//     return view('pages.my-history-transaction', [
+//         'title' => 'My History Transaction'
+//     ]);
+// });

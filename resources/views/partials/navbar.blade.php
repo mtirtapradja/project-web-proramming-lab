@@ -32,7 +32,7 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-light active" href="/history">History Transaction</a>
+                            <a class="nav-link text-light active" href="/my-history">History Transaction</a>
                         </li>
                     </ul>
                 @endcan
@@ -60,39 +60,6 @@
                         </li>
                     </ul>
                 @endcan
-                <ul class="navbar-nav ms-auto">
-                    @auth
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Welcome back, {{ auth()->user()->name }}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <form action="/logout" method="post">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item">
-                                            <i class="bi bi-box-arrow-right"></i> Logout
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @else
-                        <li class="nav-item me-2">
-                            <a href="/login" class="btn btn-danger">
-                                <i class="bi bi-box-arrow-in-right"></i>
-                                Login
-                            </a>
-                        </li>
-                        <li class="nav-item me-2">
-                            <a href="/register" class="btn btn-danger">
-                                <i class="bi bi-person-plus-fill"></i>
-                                Register
-                            </a>
-                        </li>
-                    @endauth
-                </ul>
             </div>
         </div>
     </div>

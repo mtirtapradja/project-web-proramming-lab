@@ -16,9 +16,9 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->name }}</td>
                     <td>
-                        <a href="/dashboard/posts/{{ $category->slug }}/edit"
+                        <a href="/categories/{{ $category->id }}/edit"
                             class="badge bg-warning text-decoration-none text-black">Update</a>
-                        <form action="/dashboard/posts/{{ $category->slug }}" method="POST" class="d-inline">
+                        <form action="/categories/{{ $category->id }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0"

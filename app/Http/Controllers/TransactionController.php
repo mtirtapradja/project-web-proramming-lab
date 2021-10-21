@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
-use App\Models\Transaction_detail;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -16,7 +16,7 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::where('user_id', auth()->user()->id)->get();
-        $transactionDetails = Transaction_detail::all();
+        $transactionDetails = TransactionDetail::all();
 
         return view('pages.my-history-transaction', [
             'title' => 'Manage Products',

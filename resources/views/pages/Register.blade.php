@@ -6,10 +6,22 @@
             @csrf
             <p class="fs-3 mb-3 text-primary">Join With Us</p>
             <div class="mb-3">
-                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror"
+                    placeholder="Full Name" required>
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                <input type="email" name="email" class="form-control  @error('email') is-invalid @enderror"
+                    placeholder="Email" required>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-2">
                 <div class="text-start mb-1">
@@ -25,14 +37,32 @@
                 </div>
             </div>
             <div class="mb-3">
-                <textarea class="form-control" name="address" rows="3" placeholder="Address" required></textarea>
+                <textarea class="form-control  @error('address') is-invalid @enderror" name="address" rows="3"
+                    placeholder="Address" required></textarea>
+                @error('address')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
+                    placeholder="Password" required>
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-                <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password"
+                <input type="password" name="confirmPassword"
+                    class="form-control  @error('confirmPassword') is-invalid @enderror" placeholder="Confirm Password"
                     required>
+                @error('confirmPassword')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="">

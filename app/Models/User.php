@@ -26,5 +26,9 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo(Role::class);
     }
 
+    function carts(){
+        return $this->hasOne(Cart::class);
+    }
+
     protected $guarded = ['id'];
 }

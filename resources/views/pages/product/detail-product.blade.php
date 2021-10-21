@@ -26,6 +26,38 @@
                                 <p class="fs-4 fw-bold">Description:</p>
                                 <p class="fs-5 fw-light">{{ $product->description }}</p>
                             </li>
+                            @can('user')
+                                <li class="list-group item">
+                                    <form class="row row-cols-lg-auto g-3 align-items-center mt-2" method="POST">
+                                        @csrf
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="inlineFormCheck">
+                                                    Qty
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="number" class="form-control" name="quantity">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-warning">Add to cart</button>
+                                        </div>
+                                    </form>
+                                </li>
+                            @endcan
+                            @guest
+                                <li class="list-group item">
+                                    <form class="row row-cols-lg-auto g-3 align-items-center mt-2" method="POST">
+                                        @csrf
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-warning">Login to buy</button>
+                                        </div>
+                                    </form>
+                                </li>
+
+                            @endguest
                         </ul>
                     </div>
                 </div>

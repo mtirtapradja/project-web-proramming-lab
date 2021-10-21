@@ -57,8 +57,8 @@ class ProductController extends Controller
         ]);
 
         // Buat masukin image nya kalo emang si user masukin image dan udah lolos validasi
-        if ($request->file('image')) {
-            $validatedData['image_url'] = $request->file('image')->store('product-images');
+        if ($request->file('image_url')) {
+            $validatedData['image_url'] = $request->file('image_url')->store('product-images');
         }
 
         Product::create($validatedData);
@@ -120,10 +120,10 @@ class ProductController extends Controller
         $validatedData = $request->validate($rules);
 
         // Buat masukin image nya kalo emang si user masukin image dan udah lolos validasi
-        if ($request->file('image')) {
+        if ($request->file('image_url')) {
             if ($request->oldImage) Storage::delete($request->oldImage);
 
-            $validatedData['image_url'] = $request->file('image')->store('product-images');
+            $validatedData['image_url'] = $request->file('image_url')->store('product-images');
         }
 
         Product::where('id', $product->id)

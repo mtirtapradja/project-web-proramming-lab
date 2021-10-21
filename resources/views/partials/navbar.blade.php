@@ -24,41 +24,42 @@
                         <a class="nav-link text-light active" href="/">Home</a>
                     </li>
                 </ul>
-                {{-- //TODO ini harus ada conditional rendering untuk user --}}
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light active" href="/my-cart">My Cart</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light active" href="/history">History Transaction</a>
-                    </li>
-                </ul>
-                {{-- //TODO ini harus ada conditional rendering untuk admin --}}
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Manage Product
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/products/create">Add Product</a></li>
-                            <li><a class="dropdown-item" href="/products/manage">View Product</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Manage Category
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/categories/create">Add Category</a></li>
-                            <li><a class="dropdown-item" href="/categories/manage">View Category</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                {{-- //TODO harus ada conditional rendering untuk tipe user apa --}}
+                @can('user')
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-light active" href="/my-cart">My Cart</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-light active" href="/history">History Transaction</a>
+                        </li>
+                    </ul>
+                @endcan
+                @can('admin')
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Manage Product
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/products/create">Add Product</a></li>
+                                <li><a class="dropdown-item" href="/products/manage">View Product</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Manage Category
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/categories/create">Add Category</a></li>
+                                <li><a class="dropdown-item" href="/categories/manage">View Category</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                @endcan
                 <ul class="navbar-nav ms-auto">
                     @auth
                         <li class="nav-item dropdown">

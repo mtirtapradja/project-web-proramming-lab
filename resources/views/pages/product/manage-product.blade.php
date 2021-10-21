@@ -2,6 +2,7 @@
 
 @section('container')
     <p class="fs-1 text-center mb-5">Manage Products</p>
+
     <table class="table table-warning table-striped">
         <thead>
             <tr>
@@ -18,7 +19,8 @@
             @foreach ($products as $product)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>Isi pake images nanti</td>
+                    <td><img src="{{ asset('storage/' . $product->image_url) }}" alt="Product Image"
+                            style="max-height: 500px"></td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>

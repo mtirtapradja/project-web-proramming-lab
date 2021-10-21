@@ -6,18 +6,35 @@
             @csrf
             <p class="fs-3 mb-3 text-primary">Insert New Product</p>
             <div class="mb-3">
-                <input type="text" name="name" class="form-control" placeholder="Product Name" required>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                    placeholder="Product Name" required>
+                @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-                <textarea class="form-control" name="description" rows="3" placeholder="Product Description"
-                    required></textarea>
+                <textarea class="form-control  @error('description') is-invalid @enderror" name="description" rows="3"
+                    placeholder="Product Description" required></textarea>
+                @error('description')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-                <input type="number" name="price" class="form-control" placeholder="Product Price" required>
+                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror"
+                    placeholder="Product Price" required>
+                @error('price')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label">Category</label>
-                <select class="form-select" name="category_id">
+                <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
                     @foreach ($categories as $category)
                         @if (old('category_id') == $category->id)
                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
@@ -26,6 +43,11 @@
                         @endif
                     @endforeach
                 </select>
+                @error('category_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Product Image</label>

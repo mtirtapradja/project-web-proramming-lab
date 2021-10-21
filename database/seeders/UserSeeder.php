@@ -31,5 +31,14 @@ class UserSeeder extends Seeder
             'address' => 'Jakarta',
             'password' => bcrypt('123456')
         ]);
+        
+        User::create([
+            'name' => 'Tester',
+            'email' => 'tester@binus.ac.id',
+            'role_id' => 2,
+            'gender_id' => 1,
+            'address' => 'Jakarta',
+            'password' => bcrypt('123456')
+        ]);
     }
 }

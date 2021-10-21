@@ -48,7 +48,7 @@
             <div class="mb-3">
                 <label for="image_url" class="form-label">Product Image</label>
                 <img class="img-preview img-fluid mb-3 col-sm-5">
-                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image_url"
+                <input class="form-control @error('image_url') is-invalid @enderror" type="file" id="image_url"
                     name="image_url">
                 @error('image_url')
                     <div class="invalid-feedback">

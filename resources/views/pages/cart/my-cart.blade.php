@@ -1,45 +1,46 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1>My Cart Page</h1>
-    @foreach ($carts as $cart)
-        <h1>
-            product_id = {{ $cart->product_id }} -> {{ $cart->quantity }}
-        </h1>
-        <br>
-    @endforeach
+    {{-- <h1>
+    product_id = {{ $cart->product_id }} -> {{ $cart->quantity }}
+</h1>
+<br> --}}
     <div class="row justify-content-center">
         <p class="fs-1 mb-5">My Carts</p>
-        @foreach ($products as $product)
-            <div class="mb-3">
-                <div class="card">
-                    <img src="{{ asset('storage/' . $product->image_url) }}" class="card-img-top" alt="Image">
-                    <div class=" card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                            <small class="text-muted">
-                                (IDR. {{ $product->price }})
-                            </small>
-                        <p class="d-flex justify-content-between">
-                            <small class="text-muted">
-                                x{{ $cart->quantity }} pcs
-                            </small>
-                        </p>
-                        <p class="d-flex justify-content-between">
-                            <small class="">
-                                IDR. {{ $product->price * $cart->quantity }}
-                            </small>
-                        </p>
-                        <a href="/products/{{ $product->name }}/edit"
-                            class="btn btn-warning">Edit</a>
-                        <form action="/products/{{ $product->name }}" method="POST" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="bg-danger border-0 btn btn-warning text-white"
-                                onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+        @foreach ($carts as $cart)
+            <div class="card mb-3" style="width: 100%;">
+                <div class="row g-0 p-3">
+                    <div class="col-md-3 align-self-center">
+                        <img src={{ asset('storage/' . $cart->product->image_url) }} class="cimg-fluid rounded-start"
+                            alt="Image" style="height: 12em;">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body ms-4">
+                            <h5 class="card-title">{{ $cart->product->name }}</h5>
+                            <p class="d-flex justify-content-between">
+                                <small class="text-muted">
+                                    x {{ $cart->quantity }} pcs
+                                </small>
+                            </p>
+                            <p class="d-flex justify-content-between">
+                                <small class="text-muted">
+                                    IDR. {{ $cart->product->price }}
+                                </small>
+                            </p>
+                            {{-- //TODO ini arah href sama action nya masih salah --}}
+                            <a href="/my-cart/{{ $cart->product->name }}/edit" class="btn btn-warning">Edit</a>
+                            <form action="/my-cart/{{ $cart->product->name }}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <input type="hidden" name="product_id" value={{ $cart->product->id }}>
+                                <button class="bg-danger border-0 btn btn-warning text-white"
+                                    onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+
 @endsection

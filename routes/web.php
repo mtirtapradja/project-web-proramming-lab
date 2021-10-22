@@ -32,6 +32,7 @@ Route::resource('/categories', CategoryController::class);
 
 // Cart
 // Route::get('/my-cart', [CartController::class, 'manage']);
+Route::get('/my-cart/{product}', [CartController::class, 'edit']);
 Route::resource('/my-cart', CartController::class);
 
 // History

@@ -19,6 +19,11 @@ class Product extends Model
         return $this->hasMany(TransactionDetail::class);
     }
 
+    function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'name';

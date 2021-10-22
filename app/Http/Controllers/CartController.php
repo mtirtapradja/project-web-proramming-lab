@@ -15,13 +15,12 @@ class CartController extends Controller
      */
     public function index()
     {
+        // Cari cart yang sesuai dengan user_id dari user sekarang
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        $products = Product::all();
-        
+
         return view('pages.cart.my-cart', [
-            'title' => 'Manage Products',
+            'title' => 'Cart',
             'carts' => $carts,
-            'products' => $products
         ]);
     }
 
@@ -43,7 +42,20 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::all()->firstWhere('id', $request->product_id);
+
+        $validatedData = $request->validate([
+            'user_id' => ['required'],
+            'product_id' => ['required'],
+            'quantity' => ['required'],
+            'price' => ['required'],
+        ]);
+        /* //TODO Harusnya pake sub_total jadi buat itung si total nya tinggal jumlahin subtotal */
+        // $validatedData['sub_total'] = $this->calculateSubTotal($request->quantity, $product->price);
+
+        Cart::create($validatedData);
+
+        return back()->with('success', 'Product has been added to cart!');
     }
 
     /**
@@ -63,9 +75,16 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($productName)
     {
-        //
+        $product = Product::all()->firstWhere('name', $productName);
+        $cart = Cart::all()->where('product_id', $product->id)->where('user_id', auth()->user()->id);
+
+        return view('pages.cart.edit-cart', [
+            'title' => 'Edit Cart',
+            'product' => $product,
+            'cart' => $cart->first()
+        ]);
     }
 
     /**
@@ -75,9 +94,24 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $rules = [
+            'user_id' => ['required'],
+            'product_id' => ['required'],
+            'quantity' => ['required'],
+            'price' => ['required'],
+        ];
+
+        // $validatedData['sub_total'] = $this->calculateSubTotal($request->quantity, $request->price);
+
+        $validatedData = $request->validate($rules);
+
+        Cart::where('product_id', $request->product_id)
+            ->update($validatedData);
+
+        return redirect('/my-cart')->with('success', 'Product has been updated!');
     }
 
     /**
@@ -86,13 +120,14 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        Cart::where('product_id', $request->product_id)->delete();
+        return redirect('/my-cart')->with('success', 'Post has been deleted!');
     }
 
-    // public function manage(Request $request)
-    // {
-        
-    // }
+    public function calculateSubTotal($quantity, $price)
+    {
+        return $quantity * $price;
+    }
 }

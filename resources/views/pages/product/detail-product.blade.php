@@ -2,6 +2,14 @@
 
 @section('container')
     <div class="container-fluid d-flex flex-row justify-content-center">
+        <div class="row-md-5">
+            {{-- Buat nampilin flash message dari controller --}}
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            @endif
+        </div>
         <div class="card mb-3" style="width: 100%;">
             <div class="row g-0">
                 <div class="col-md-8">
@@ -28,8 +36,12 @@
                             </li>
                             @can('user')
                                 <li class="list-group item">
-                                    <form class="row row-cols-lg-auto g-3 align-items-center mt-2" method="POST">
+                                    <form action="/my-cart" class="row row-cols-lg-auto g-3 align-items-center mt-2"
+                                        method="POST">
                                         @csrf
+                                        <input type="hidden" name="user_id" value={{ auth()->user()->id }}>
+                                        <input type="hidden" name="product_id" value={{ $product->id }}>
+                                        <input type="hidden" name="price" value={{ $product->price }}>
                                         <div class="col-12">
                                             <div class="form-check">
                                                 <label class="form-check-label" for="inlineFormCheck">
@@ -49,14 +61,10 @@
                             @endcan
                             @guest
                                 <li class="list-group item">
-                                    <form class="row row-cols-lg-auto g-3 align-items-center mt-2" method="POST">
-                                        @csrf
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-warning">Login to buy</button>
-                                        </div>
-                                    </form>
+                                    <div class="col-12">
+                                        <a href="/login" class="btn btn-warning mt-3">Login to buy</a>
+                                    </div>
                                 </li>
-
                             @endguest
                         </ul>
                     </div>

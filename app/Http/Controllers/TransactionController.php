@@ -16,6 +16,7 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::where('user_id', auth()->user()->id)->get();
+        // $transactionDetails = TransactionDetail::where('transaction_id', $transactions->id)->get();
         $transactionDetails = TransactionDetail::all();
 
         return view('pages.my-history-transaction', [
@@ -89,5 +90,10 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function calculateSubTotal($quantity, $price)
+    {
+        return $quantity * $price;
     }
 }

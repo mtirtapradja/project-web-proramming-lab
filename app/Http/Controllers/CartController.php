@@ -141,14 +141,13 @@ class CartController extends Controller
         return redirect('/my-cart')->with('success', 'Post has been deleted!');
     }
 
-    public function checkout(Request $request)
+    public function checkout()
     {
-        // TODO kirim product yang mau di store di transaction controller (transaction history)
+        // TODO kirrim poduct yang mau di store di transaction controller (transaction history)
         // terus nanti di delete si product yang udah di checkout
         // app('App\Http\Controllers\TransactionController')->create();
 
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        dd($carts);
         foreach ($carts as $cart) {
             Cart::where('product_id', $cart->product_id)->delete();
         }

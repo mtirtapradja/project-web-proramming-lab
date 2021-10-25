@@ -32,8 +32,8 @@ Route::resource('/categories', CategoryController::class);
 
 // Cart
 // Route::get('/my-cart', [CartController::class, 'manage']);
-Route::get('/my-cart/{product}', [CartController::class, 'edit']);
 Route::get('/my-cart/checkout', [CartController::class, 'checkout']);
+Route::get('/my-cart/{product}', [CartController::class, 'edit']);
 Route::resource('/my-cart', CartController::class)->except('create', 'show');
 
 // History

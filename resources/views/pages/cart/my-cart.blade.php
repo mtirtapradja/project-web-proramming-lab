@@ -16,7 +16,9 @@
                     </div>
                     <div class="col-md-9">
                         <div class="card-body ms-4">
-                            <h5 class="card-title">{{ $cart->product->name }}</h5>
+                            <h5 class="card-title">{{ $cart->product->name }} <small class="text-muted">
+                                    (IDR {{ number_format($cart->product->price) }})
+                                </small></h5>
                             <p class="d-flex justify-content-between">
                                 <small class="text-muted">
                                     x {{ $cart->quantity }} pcs
@@ -24,7 +26,7 @@
                             </p>
                             <p class="d-flex justify-content-between">
                                 <small class="text-muted">
-                                    IDR. {{ $cart->product->price }}
+                                    IDR. {{ number_format($cart->product->price * $cart->quantity) }}
                                 </small>
                             </p>
                             {{-- //TODO ini arah href sama action nya masih salah --}}
@@ -34,13 +36,20 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value={{ $cart->product->id }}>
                                 <button class="bg-danger border-0 btn btn-warning text-white"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
+                                    onclick="return confirm('Are you sure want to remove this item from cart?')">Delete</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         @endforeach
+        <div class="row align-items-center">
+            <div class="col-auto me-auto">
+                <p class="fs-4 fw-bold mb-1"> Total Price</p> IDR {{ number_format($total_price) }}
+            </div>
+            <div class="col-auto align-items-center">
+                <a href="/my-cart/checkout" class="btn btn-warning">Checkout({{ $total_quantity }})</a>
+            </div>
+        </div>
     </div>
-
 @endsection

@@ -17,10 +17,21 @@ class CartController extends Controller
     {
         // Cari cart yang sesuai dengan user_id dari user sekarang
         $carts = Cart::where('user_id', auth()->user()->id)->get();
+        $total_price = 0;
+        $total_quantity = 0;
+
+        foreach ($carts as $cart) {
+            $total_price += $this->calculateSubTotal($cart->quantity, $cart->price);
+            $total_quantity += $cart->quantity;
+        }
+
+
 
         return view('pages.cart.my-cart', [
             'title' => 'Cart',
             'carts' => $carts,
+            'total_price' => $total_price,
+            'total_quantity' => $total_quantity
         ]);
     }
 
@@ -42,7 +53,8 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::all()->firstWhere('id', $request->product_id);
+        $carts = Cart::where('user_id', auth()->user()->id)->get();
+        $product = $carts->firstWhere('product_id', $request->product_id);
 
         $validatedData = $request->validate([
             'user_id' => ['required'],
@@ -50,10 +62,13 @@ class CartController extends Controller
             'quantity' => ['required'],
             'price' => ['required'],
         ]);
-        /* //TODO Harusnya pake sub_total jadi buat itung si total nya tinggal jumlahin subtotal */
-        // $validatedData['sub_total'] = $this->calculateSubTotal($request->quantity, $product->price);
 
-        Cart::create($validatedData);
+        if ($product) {
+            $request['quantity'] = $product->quantity + $request->quantity;
+            $this->update($request);
+        } else {
+            Cart::create($validatedData);
+        }
 
         return back()->with('success', 'Product has been added to cart!');
     }
@@ -124,6 +139,20 @@ class CartController extends Controller
     {
         Cart::where('product_id', $request->product_id)->delete();
         return redirect('/my-cart')->with('success', 'Post has been deleted!');
+    }
+
+    public function checkout(Request $request)
+    {
+        // TODO kirim product yang mau di store di transaction controller (transaction history)
+        // terus nanti di delete si product yang udah di checkout
+        // app('App\Http\Controllers\TransactionController')->create();
+
+        $carts = Cart::where('user_id', auth()->user()->id)->get();
+        dd($carts);
+        foreach ($carts as $cart) {
+            Cart::where('product_id', $cart->product_id)->delete();
+        }
+        return redirect('/my-cart')->with('success', 'Successfully Checkout');
     }
 
     public function calculateSubTotal($quantity, $price)

@@ -32,8 +32,8 @@ Route::resource('/categories', CategoryController::class);
 
 // Cart
 // Route::get('/my-cart', [CartController::class, 'manage']);
-Route::get('/my-cart/{product}', [CartController::class, 'edit']);
 Route::get('/my-cart/checkout', [CartController::class, 'checkout']);
+Route::get('/my-cart/{product}', [CartController::class, 'edit']);
 Route::resource('/my-cart', CartController::class)->except('create', 'show');
 
 // History
@@ -47,7 +47,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 
 // Register
-Route::get('/register', [GeneralController::class, 'register'])->middleware('guest');
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
 

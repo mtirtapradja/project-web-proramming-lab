@@ -19,6 +19,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
             $table->bigInteger('price');
+            $table->bigInteger('sub_total');
 
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('transaction_id')->references('id')->on('transactions')->onUpdate('cascade')->onDelete(('cascade'));

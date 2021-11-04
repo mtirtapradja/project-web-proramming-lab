@@ -25,8 +25,6 @@ class CartController extends Controller
             $total_quantity += $cart->quantity;
         }
 
-
-
         return view('pages.cart.my-cart', [
             'title' => 'Cart',
             'carts' => $carts,
@@ -143,14 +141,17 @@ class CartController extends Controller
 
     public function checkout()
     {
-        // TODO kirrim poduct yang mau di store di transaction controller (transaction history)
-        // terus nanti di delete si product yang udah di checkout
-        // app('App\Http\Controllers\TransactionController')->create();
+        $transactionController = app('App\Http\Controllers\TransactionController');
 
         $carts = Cart::where('user_id', auth()->user()->id)->get();
+
+        $transactionController->createTransaction(auth()->user()->id);
+
         foreach ($carts as $cart) {
+            $transactionController->store($cart);
             Cart::where('product_id', $cart->product_id)->delete();
         }
+
         return redirect('/my-cart')->with('success', 'Successfully Checkout');
     }
 

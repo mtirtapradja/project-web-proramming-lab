@@ -18,4 +18,6 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+
+    protected $guarded = ['id'];
 }

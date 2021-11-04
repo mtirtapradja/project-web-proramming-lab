@@ -29,7 +29,6 @@
                                     IDR. {{ number_format($cart->product->price * $cart->quantity) }}
                                 </small>
                             </p>
-                            {{-- //TODO ini arah href sama action nya masih salah --}}
                             <a href="/my-cart/{{ $cart->product->name }}/edit" class="btn btn-warning">Edit</a>
                             <form action="/my-cart/{{ $cart->product->name }}" method="POST" class="d-inline">
                                 @method('delete')

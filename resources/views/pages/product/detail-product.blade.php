@@ -13,7 +13,7 @@
         <div class="card mb-3" style="width: 100%;">
             <div class="row g-0">
                 <div class="col-md-8">
-                    <img src="https://source.unsplash.com/random/750x750" alt="image" class="img-fluid rounded-start"
+                    <img src="{{ asset('storage/' . $product->image_url) }}" alt="image" class="img-fluid rounded-start"
                         style="height: 60em; width: 60em">
                 </div>
                 <div class="col-md-4">

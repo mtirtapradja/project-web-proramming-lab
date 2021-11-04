@@ -49,18 +49,3 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
-
-
-
-
-// Route::get('/my-cart', function () {
-//     return view('pages.cart.my-cart', [
-//         'title' => 'My Cart'
-//     ]);
-// });
-
-// Route::get('/history', function () {
-//     return view('pages.my-history-transaction', [
-//         'title' => 'My History Transaction'
-//     ]);
-// });

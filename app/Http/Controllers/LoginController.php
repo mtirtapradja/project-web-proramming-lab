@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if (Cookie::get('remember_me')) {
+            $cookieValue = Cookie::get('remember_me');
+            $credentials = json_decode($cookieValue, true);
+
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                return redirect()->intended('/');
+            }
+        }
+
         return view('pages.login', [
             'title' => 'Login'
         ]);
@@ -21,8 +33,20 @@ class LoginController extends Controller
             'password' => ['required']
         ]);
 
+        $cookie = null;
 
-        if (Auth::attempt($credentials)) {
+        /**
+         * Kalo remember me di check bikin cookies
+         */
+        if ($request->rememberMe) {
+            $credentials_array = json_encode($credentials);
+            $cookie = cookie('remember_me', $credentials_array, 300);
+        }
+
+        if (Auth::attempt($credentials) && $cookie !== null) {
+            $request->session()->regenerate();
+            return redirect()->intended('/')->cookie($cookie);
+        } else if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }

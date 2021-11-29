@@ -41,7 +41,7 @@
                     @enderror
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="">
+                    <input class="form-check-input" name="rememberMe" type="checkbox" value="checked">
                     <label class="form-check-label" for="">
                         Remember me
                     </label>

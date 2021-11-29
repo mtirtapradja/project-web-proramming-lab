@@ -16,9 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(6);
         if (request('search')) {
-            $products = Product::where('name', 'like', '%' . request('search') . '%')->get();
+            $products = Product::where('name', 'like', '%' . request('search') . '%')->paginate(6)->withQueryString();
         }
 
         return view('pages.home', [

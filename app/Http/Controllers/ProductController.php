@@ -49,9 +49,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'unique:products'],
-            'description' => ['required'],
-            'price' => ['required'],
+            'name' => ['required', 'unique:products', 'min:5'],
+            'description' => ['required', 'min:50'],
+            'price' => ['required', 'numeric', 'min:1'],
             'category_id' => ['required'],
             'image_url' => ['image', 'file'],
         ]);
@@ -104,20 +104,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $rules = [
-            'description' => ['required'],
-            'price' => ['required'],
+        $validatedData = $request->validate([
+            'description' => ['required', 'min:50'],
+            'price' => ['required', 'numeric', 'min:1'],
             'category_id' => ['required'],
             'image_url' => ['image', 'file'],
-        ];
+        ]);
 
         // $request itu yang baru, $post itu yang lama
         if ($request->name != $product->name) {
-            $rules['name'] = ['required', 'unique:products'];
+            $validatedData['name'] = ['required', 'unique:products'];
         }
-
-
-        $validatedData = $request->validate($rules);
 
         // Buat masukin image nya kalo emang si user masukin image dan udah lolos validasi
         if ($request->file('image_url')) {

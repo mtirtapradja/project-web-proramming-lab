@@ -53,11 +53,10 @@ class CartController extends Controller
     {
         $carts = Cart::where('user_id', auth()->user()->id)->get();
         $product = $carts->firstWhere('product_id', $request->product_id);
-
         $validatedData = $request->validate([
             'user_id' => ['required'],
             'product_id' => ['required'],
-            'quantity' => ['required'],
+            'quantity' => ['required', 'numeric', 'min:1'],
             'price' => ['required'],
         ]);
 

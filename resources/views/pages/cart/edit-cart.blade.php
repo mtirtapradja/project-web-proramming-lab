@@ -42,19 +42,29 @@
                                     <input type="hidden" name="user_id" value={{ auth()->user()->id }}>
                                     <input type="hidden" name="product_id" value={{ $product->id }}>
                                     <input type="hidden" name="price" value={{ $product->price }}>
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <label class="form-check-label" for="inlineFormCheck">
-                                                Qty
-                                            </label>
+                                    <div class="row p-0">
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="inlineFormCheck">
+                                                    Qty
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="number" class="form-control" name="quantity"
-                                            value={{ $cart->quantity }}>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-warning">Save</button>
+                                        <div class="col-7">
+                                            <input type="number"
+                                                class="form-control @error('quantity')
+                                            is-invalid @enderror"
+                                                name="quantity" value={{ $cart->quantity }} required>
+                                            @error('quantity')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-3">
+                                            <button type="submit" class="btn btn-warning">Save</button>
+                                        </div>
                                     </div>
                                 </form>
                             </li>

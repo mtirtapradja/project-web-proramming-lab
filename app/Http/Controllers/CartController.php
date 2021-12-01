@@ -108,17 +108,12 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-
-        $rules = [
+        $validatedData = $request->validate([
             'user_id' => ['required'],
             'product_id' => ['required'],
-            'quantity' => ['required'],
+            'quantity' => ['required', 'numeric', 'min:1'],
             'price' => ['required'],
-        ];
-
-        // $validatedData['sub_total'] = $this->calculateSubTotal($request->quantity, $request->price);
-
-        $validatedData = $request->validate($rules);
+        ]);
 
         Cart::where('product_id', $request->product_id)
             ->update($validatedData);

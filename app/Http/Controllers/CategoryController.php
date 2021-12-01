@@ -39,7 +39,7 @@ class CategoryController extends Controller
     {
         //validasi nama category
         $validatedData = $request->validate([
-            'name' => ['required', 'unique:categories']
+            'name' => ['required', 'unique:categories', 'min:2']
         ]);
 
         Category::create($validatedData);
@@ -81,16 +81,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $rules = [
-            'name' => ['required']
-        ];
+        $validatedData = $request->validate([
+            'name' => ['required', 'unique:categories', 'min:2']
+        ]);
 
         // $request itu yang baru, $post itu yang lama
         if ($request->name != $category->name) {
             $rules['name'] = ['required', 'unique:products'];
         }
-
-        $validatedData = $request->validate($rules);
 
         Category::where('id', $category->id)
             ->update($validatedData);
@@ -109,7 +107,6 @@ class CategoryController extends Controller
         // Delete dari table
         Category::destroy($category->id);
         return redirect('/categories/manage')->with('success', 'Post has been deleted!');
-    
     }
 
     public function manage(Request $request)

@@ -19,14 +19,16 @@ class TransactionDetailSeeder extends Seeder
             'transaction_id' => 1,
             'product_id' => 1,
             'quantity' => 1,
-            'price' => 1000
+            'price' => 1000,
+            'sub_total' => 1000
         ]);
         TransactionDetail::create([
             'id' => 2,
             'transaction_id' => 1,
             'product_id' => 2,
             'quantity' => 2,
-            'price' => 2000
+            'price' => 2000,
+            'sub_total' => 4000
         ]);
 
         TransactionDetail::create([
@@ -34,14 +36,16 @@ class TransactionDetailSeeder extends Seeder
             'transaction_id' => 2,
             'product_id' => 1,
             'quantity' => 1,
-            'price' => 1000
+            'price' => 1000,
+            'sub_total' => 1000
         ]);
         TransactionDetail::create([
             'id' => 4,
             'transaction_id' => 2,
             'product_id' => 2,
             'quantity' => 2,
-            'price' => 2000
+            'price' => 2000,
+            'sub_total' => 4000
         ]);
 
         TransactionDetail::create([
@@ -49,7 +53,8 @@ class TransactionDetailSeeder extends Seeder
             'transaction_id' => 3,
             'product_id' => 1,
             'quantity' => 1,
-            'price' => 1000
+            'price' => 1000,
+            'sub_total' => 1000
         ]);
     }
 }

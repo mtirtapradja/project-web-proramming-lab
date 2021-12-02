@@ -23,18 +23,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProductController::class, 'index']);
 
 // Product
-Route::get('/products/manage', [ProductController::class, 'manage'])->middleware('auth');
+Route::get('/products/manage', [ProductController::class, 'manage'])->middleware('is_admin');
 Route::resource('/products', ProductController::class);
 
 // category
-Route::get('/categories/manage', [CategoryController::class, 'manage'])->middleware('auth');
-Route::resource('/categories', CategoryController::class);
+Route::get('/categories/manage', [CategoryController::class, 'manage'])->middleware('is_admin');
+Route::resource('/categories', CategoryController::class)->middleware('is_admin');
 
 // Cart
 // Route::get('/my-cart', [CartController::class, 'manage']);
 Route::get('/my-cart/checkout', [CartController::class, 'checkout'])->middleware('is_buyer');
 Route::get('/my-cart/{product}', [CartController::class, 'edit'])->middleware('is_buyer');
-Route::resource('/my-cart', CartController::class)->except('create', 'show');
+Route::resource('/my-cart', CartController::class)->except('create', 'show')->middleware('is_buyer');;
 
 // History
 // Route::get('/my-history', [HistoryController::class, 'manage']);

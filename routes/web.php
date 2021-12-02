@@ -32,19 +32,18 @@ Route::resource('/categories', CategoryController::class);
 
 // Cart
 // Route::get('/my-cart', [CartController::class, 'manage']);
-Route::get('/my-cart/checkout', [CartController::class, 'checkout']);
-Route::get('/my-cart/{product}', [CartController::class, 'edit']);
+Route::get('/my-cart/checkout', [CartController::class, 'checkout'])->middleware('is_buyer');
+Route::get('/my-cart/{product}', [CartController::class, 'edit'])->middleware('is_buyer');
 Route::resource('/my-cart', CartController::class)->except('create', 'show');
 
 // History
 // Route::get('/my-history', [HistoryController::class, 'manage']);
-Route::resource('/my-history', TransactionController::class);
+Route::resource('/my-history', TransactionController::class)->middleware('is_buyer');
 
 // Login
 Route::get('/login',  [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login',  [LoginController::class, 'authenticate'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
-
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');

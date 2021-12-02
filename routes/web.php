@@ -31,13 +31,11 @@ Route::get('/categories/manage', [CategoryController::class, 'manage'])->middlew
 Route::resource('/categories', CategoryController::class)->middleware('is_admin');
 
 // Cart
-// Route::get('/my-cart', [CartController::class, 'manage']);
 Route::get('/my-cart/checkout', [CartController::class, 'checkout'])->middleware('is_buyer');
 Route::get('/my-cart/{product}', [CartController::class, 'edit'])->middleware('is_buyer');
 Route::resource('/my-cart', CartController::class)->except('create', 'show')->middleware('is_buyer');;
 
 // History
-// Route::get('/my-history', [HistoryController::class, 'manage']);
 Route::resource('/my-history', TransactionController::class)->middleware('is_buyer');
 
 // Login

@@ -20,7 +20,8 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td><img src="{{ asset('storage/' . $product->image_url) }}" alt="Product Image"
-                            style="max-height: 500px"></td>
+                            style="height: 20em; width: 20em">
+                    </td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>

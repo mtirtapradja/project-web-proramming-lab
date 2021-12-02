@@ -70,7 +70,6 @@
                                         </div>
                                     </form>
                                 </li>
-
                             @endcan
                             @guest
                                 <li class="list-group item">

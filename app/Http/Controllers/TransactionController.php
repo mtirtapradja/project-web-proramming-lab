@@ -32,7 +32,7 @@ class TransactionController extends Controller
 
         return view('pages.my-history-transaction', [
             'title' => 'Manage Products',
-            'transactions' => $transactions,
+            'transactions' => $transactions->reverse(),
             'transactionDetails' => $transactionDetails,
         ]);
     }

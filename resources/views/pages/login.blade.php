@@ -22,7 +22,7 @@
                 @csrf
                 {{-- Buat nampilin flash message dari controller --}}
                 <p class="fs-3 mb-3 text-primary">Welcome Back</p>
-                <div class="mb-3">
+                <div class="form-floating mb-3">
                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
                         placeholder="Enter email" required>
                     @error('email')
@@ -30,8 +30,9 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <label for="floatingInput">Email</label>
                 </div>
-                <div class="mb-3">
+                <div class="form-floating mb-3">
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                         id="password" placeholder="Password" required>
                     @error('password')
@@ -39,6 +40,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <label for="floatingInput">Password</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" name="rememberMe" type="checkbox" value="checked">

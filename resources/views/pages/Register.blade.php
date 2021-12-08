@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-floating mb-3">
                     <textarea class="form-control  @error('address') is-invalid @enderror" name="address" rows="3"
-                        placeholder="Address" style="height: 100px" required></textarea>
+                        placeholder="Address" style="height: 8em" required></textarea>
                     @error('address')
                         <div class="invalid-feedback">
                             {{ $message }}

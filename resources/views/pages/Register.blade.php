@@ -21,7 +21,7 @@
             <form class="bg-light p-4" action="/register" method="post">
                 @csrf
                 <p class="fs-3 mb-3 text-primary">Join With Us</p>
-                <div class="mb-3">
+                <div class="form-floating mb-3">
                     <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror"
                         placeholder="Full Name" required>
                     @error('name')
@@ -29,8 +29,9 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <label for="floatingInput">Name</label>
                 </div>
-                <div class="mb-3">
+                <div class="form-floating mb-3">
                     <input type="email" name="email" class="form-control  @error('email') is-invalid @enderror"
                         placeholder="Email" required>
                     @error('email')
@@ -38,6 +39,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <label for="floatingInput">Email</label>
                 </div>
                 <div class="mb-2">
                     <div class="text-start mb-1">
@@ -57,16 +59,17 @@
                         </div>
                     @enderror
                 </div>
-                <div class="mb-3">
+                <div class="form-floating mb-3">
                     <textarea class="form-control  @error('address') is-invalid @enderror" name="address" rows="3"
-                        placeholder="Address" required></textarea>
+                        placeholder="Address" style="height: 8em" required></textarea>
                     @error('address')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
+                    <label for="floatingInput">Address</label>
                 </div>
-                <div class="mb-3">
+                <div class="form-floating mb-3">
                     <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
                         placeholder="Password" required>
                     @error('password')
@@ -74,8 +77,9 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <label for="floatingInput">Password</label>
                 </div>
-                <div class="mb-3">
+                <div class="form-floating mb-3">
                     <input type="password" name="password_confirmation"
                         class="form-control  @error('password_confirmation') is-invalid @enderror"
                         placeholder="Confirm Password" required>
@@ -84,6 +88,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <label for="floatingInput">Cofirmation Password</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" name="agree" type="checkbox" value="checked">

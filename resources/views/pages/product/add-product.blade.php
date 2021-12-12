@@ -5,7 +5,7 @@
         <form class="bg-light p-4" action="/products" method="post" enctype="multipart/form-data">
             @csrf
             <p class="fs-3 mb-3 text-primary">Insert New Product</p>
-            <div class="mb-3">
+            <div class="mb-3 form-floating">
                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                     placeholder="Product Name" required>
                 @error('name')
@@ -13,17 +13,19 @@
                         {{ $message }}
                     </div>
                 @enderror
+                <label for="floatingPassword">Name</label>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-floating">
                 <textarea class="form-control  @error('description') is-invalid @enderror" name="description" rows="3"
-                    placeholder="Product Description" required></textarea>
+                    placeholder="Product Description" required style="height: 8em"></textarea>
                 @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
+                <label for="floatingPassword">Description</label>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-floating">
                 <input type="number" name="price" class="form-control @error('price') is-invalid @enderror"
                     placeholder="Product Price" required>
                 @error('price')
@@ -31,6 +33,7 @@
                         {{ $message }}
                     </div>
                 @enderror
+                <label for="floatingPassword">Price</label>
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label">Category</label>

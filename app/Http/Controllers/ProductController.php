@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -14,8 +16,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (Cookie::get('remember_me')) {
+            $cookieValue = Cookie::get('remember_me');
+            $credentials = json_decode($cookieValue, true);
+
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+            }
+        }
+
         $products = Product::paginate(6);
         if (request('search')) {
             $products = Product::where('name', 'like', '%' . request('search') . '%')->paginate(6)->withQueryString();

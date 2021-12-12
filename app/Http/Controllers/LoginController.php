@@ -9,18 +9,8 @@ use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if (Cookie::get('remember_me')) {
-            $cookieValue = Cookie::get('remember_me');
-            $credentials = json_decode($cookieValue, true);
-
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                return redirect()->intended('/');
-            }
-        }
-
         return view('pages.login', [
             'title' => 'Login'
         ]);
@@ -57,6 +47,8 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+
+        Cookie::queue(Cookie::forget('remember_me'));
 
         $request->session()->invalidate();
 

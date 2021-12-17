@@ -21,11 +21,11 @@ class RegisterController extends Controller
     {
         // dd($request);
         $validatedData = $request->validate([
-            'name' => ['required', 'max:255'],
+            'name' => ['required', 'min:5', 'max:255'],
             'email' => ['required', 'email:dns'],
             'gender_id' => ['required', 'in:1,2'],
             'address' => ['required', 'max:255'],
-            'password' => ['required', 'min:5', 'max:255', 'confirmed']
+            'password' => ['required', 'min:6', 'max:255', 'confirmed']
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
